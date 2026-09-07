@@ -1,0 +1,70 @@
+<div class="leave-container">
+
+  <div class="leave-card">
+
+    <h2>Apply Leave</h2>
+
+    <label>Leave Type</label>
+
+<select [(ngModel)]="leaveType">
+  <option value="">Select Leave Type</option>
+
+  <option value="CasualLeave">
+    Casual Leave (CL)
+  </option>
+
+  <option value="SickLeave">
+    Sick Leave (SL)
+  </option>
+
+  <option value="PrivilegedLeave">
+    Privileged Leave (PL)
+  </option>
+</select>
+
+    <label>Leave Duration</label>
+
+<select [(ngModel)]="leaveDuration">
+
+  <option value="">
+    Select Duration
+  </option>
+
+  <option value="FULL_DAY">
+    Full Day
+  </option>
+
+  <option value="HALF_DAY">
+    Half Day
+  </option>
+
+</select>
+
+    <label>Start Date</label>
+
+    <input
+      type="date"
+      [(ngModel)]="startDate">
+
+    <label>End Date</label>
+
+    <input
+      type="date"
+      [(ngModel)]="endDate">
+
+    <label>Reason</label>
+
+    <textarea
+      [(ngModel)]="reason">
+    </textarea>
+
+    <button
+      (click)="applyLeave()">
+
+      Apply Leave
+
+    </button>
+
+  </div>
+
+</div>

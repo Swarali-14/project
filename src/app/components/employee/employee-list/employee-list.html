@@ -1,0 +1,113 @@
+<div class="employee-list-page">
+
+  <div class="employee-list-card">
+
+    <div class="page-header">
+
+      <div>
+        <h2>Employee List</h2>
+        <p>View and manage employee accounts</p>
+      </div>
+
+      <div class="header-actions">
+
+        <a
+          routerLink="/add-employee"
+          class="add-link">
+          Add Employee
+        </a>
+
+        <button
+          type="button"
+          class="refresh-button"
+          [disabled]="isLoading"
+          (click)="loadEmployees()">
+
+          {{ isLoading ? 'Loading...' : 'Refresh' }}
+
+        </button>
+
+        <a
+          routerLink="/dashboard"
+          class="dashboard-link">
+          Dashboard
+        </a>
+
+      </div>
+
+    </div>
+
+    @if (isLoading) {
+
+      <p class="message">
+        Loading employees...
+      </p>
+
+    } @else if (errorMessage) {
+
+      <p class="error-message">
+        {{ errorMessage }}
+      </p>
+
+    } @else if (employees.length === 0) {
+
+      <p class="message">
+        No employees found.
+      </p>
+
+    } @else {
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Employee Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            @for (employee of employees; track employee.id) {
+
+              <tr>
+
+                <td>{{ employee.id }}</td>
+
+                <td>{{ employee.name }}</td>
+
+                <td>{{ employee.email }}</td>
+
+                <td class="department-cell">
+                  {{ employee.department }}
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="delete-button"
+                    (click)="deleteEmployee(employee.id)">
+                    Delete
+                  </button>
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

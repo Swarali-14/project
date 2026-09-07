@@ -1,0 +1,76 @@
+<div class="balance-page">
+
+  <div class="balance-container">
+
+    <div class="balance-header">
+
+      <div>
+        <h2>My Leave Balance</h2>
+        <p>View your available leave balance</p>
+      </div>
+
+      <button
+        type="button"
+        class="refresh-button"
+        (click)="loadBalances()">
+        Refresh
+      </button>
+
+    </div>
+
+    @if (isLoading) {
+
+      <p class="message">
+        Loading leave balance...
+      </p>
+
+    } @else if (errorMessage) {
+
+      <p class="error-message">
+        {{ errorMessage }}
+      </p>
+
+    } @else if (balances.length === 0) {
+
+      <p class="message">
+        No leave balance records found.
+      </p>
+
+    } @else {
+
+      <div class="balance-grid">
+
+        @for (balance of balances; track balance.id) {
+
+          <div class="balance-card">
+
+            <h3>
+              {{ getLeaveTypeName(balance.leaveTypeId) }}
+            </h3>
+
+            <div class="balance-row">
+              <span>Total Days</span>
+              <strong>{{ balance.totalDays }}</strong>
+            </div>
+
+            <div class="balance-row">
+              <span>Used Days</span>
+              <strong>{{ balance.usedDays }}</strong>
+            </div>
+
+            <div class="balance-row remaining">
+              <span>Remaining Days</span>
+              <strong>{{ balance.remainingDays }}</strong>
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

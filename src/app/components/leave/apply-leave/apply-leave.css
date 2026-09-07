@@ -1,0 +1,56 @@
+.leave-container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f4f6f9;
+}
+
+.leave-card{
+  width:450px;
+  padding:30px;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.15);
+}
+
+.leave-card h2{
+  text-align:center;
+  color:#1e3c72;
+  margin-bottom:20px;
+}
+
+.leave-card label{
+  display:block;
+  margin-top:15px;
+  margin-bottom:5px;
+  font-weight:600;
+}
+
+.leave-card input,
+.leave-card select,
+.leave-card textarea{
+  width:100%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+.leave-card textarea{
+  height:80px;
+}
+
+.leave-card button{
+  width:100%;
+  margin-top:20px;
+  padding:12px;
+  border:none;
+  border-radius:6px;
+  background:#1e3c72;
+  color:white;
+  cursor:pointer;
+}
+
+.leave-card button:hover{
+  background:#2a5298;
+}

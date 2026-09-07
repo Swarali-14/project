@@ -1,0 +1,186 @@
+<div class="dashboard-page">
+
+  <header class="dashboard-header">
+
+    <div>
+      <h1>Leave Management System</h1>
+
+      <p>
+        Welcome to your dashboard
+      </p>
+    </div>
+
+    <div class="header-actions">
+
+      <span class="role-badge">
+        {{ role }}
+      </span>
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()">
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </header>
+
+  <main class="dashboard-content">
+
+    @if (isEmployee()) {
+
+      <div class="section-heading">
+
+        <h2>Employee Dashboard</h2>
+
+        <p>
+          Apply for leave and manage your requests
+        </p>
+
+      </div>
+
+      <div class="dashboard-grid">
+
+        <a
+          class="dashboard-card"
+          routerLink="/apply-leave">
+
+          <div class="card-icon">
+            +
+          </div>
+
+          <h3>Apply Leave</h3>
+
+          <p>
+            Submit a new leave request
+          </p>
+
+        </a>
+
+        <a
+          class="dashboard-card"
+          routerLink="/leave-history">
+
+          <div class="card-icon">
+            H
+          </div>
+
+          <h3>My Leave History</h3>
+
+          <p>
+            View and cancel your leave requests
+          </p>
+
+        </a>
+
+        <a
+          class="dashboard-card"
+          routerLink="/view-balance">
+
+          <div class="card-icon">
+            B
+          </div>
+
+          <h3>My Leave Balance</h3>
+
+          <p>
+            Check CL, SL and PL balances
+          </p>
+
+        </a>
+
+      </div>
+
+    } @else if (isAdmin()) {
+
+      <div class="section-heading">
+
+        <h2>Admin Dashboard</h2>
+
+        <p>
+          Manage employees and leave requests
+        </p>
+
+      </div>
+
+      <div class="dashboard-grid">
+
+        <a
+          class="dashboard-card"
+          routerLink="/add-employee">
+
+          <div class="card-icon">
+            +
+          </div>
+
+          <h3>Add Employee</h3>
+
+          <p>
+            Create a new employee account
+          </p>
+
+        </a>
+
+        <a
+          class="dashboard-card"
+          routerLink="/employee-list">
+
+          <div class="card-icon">
+            E
+          </div>
+
+          <h3>Employee List</h3>
+
+          <p>
+            View and manage employees
+          </p>
+
+        </a>
+
+        <a
+          class="dashboard-card"
+          routerLink="/pending-leaves">
+
+          <div class="card-icon">
+            P
+          </div>
+
+          <h3>Pending Leaves</h3>
+
+          <p>
+            Approve or reject leave requests
+          </p>
+
+        </a>
+
+      </div>
+
+    } @else {
+
+      <div class="access-message">
+
+        <h2>Session Not Found</h2>
+
+        <p>
+          Please log in again to access the dashboard.
+        </p>
+
+        <button
+          type="button"
+          (click)="logout()">
+
+          Go to Login
+
+        </button>
+
+      </div>
+
+    }
+
+  </main>
+
+</div>

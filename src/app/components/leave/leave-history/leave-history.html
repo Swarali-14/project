@@ -1,0 +1,137 @@
+<div class="history-page">
+
+  <div class="history-card">
+
+    <div class="history-header">
+
+      <div>
+        <h2>My Leave History</h2>
+
+        <p>
+          View and manage your leave requests
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="refresh-button"
+        (click)="loadLeaveHistory()">
+
+        Refresh
+
+      </button>
+
+    </div>
+
+    @if (isLoading) {
+
+      <p class="message">
+        Loading leave history...
+      </p>
+
+    } @else if (errorMessage) {
+
+      <p class="error-message">
+        {{ errorMessage }}
+      </p>
+
+    } @else if (leaves.length === 0) {
+
+      <p class="message">
+        No leave requests found.
+      </p>
+
+    } @else {
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Leave Type</th>
+              <th>Duration</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Total Days</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            @for (leave of leaves; track leave.id) {
+
+              <tr>
+
+                <td>{{ leave.id }}</td>
+
+                <td>{{ leave.leaveType }}</td>
+
+                <td>{{ leave.leaveDuration }}</td>
+
+                <td>{{ leave.startDate }}</td>
+
+                <td>{{ leave.endDate }}</td>
+
+                <td>{{ leave.totalDays }}</td>
+
+                <td>{{ leave.reason }}</td>
+
+                <td>
+
+                  <span
+                    class="status"
+                    [class.pending]="leave.status === 'PENDING'"
+                    [class.approved]="leave.status === 'APPROVED'"
+                    [class.rejected]="leave.status === 'REJECTED'"
+                    [class.cancelled]="leave.status === 'CANCELLED'">
+
+                    {{ leave.status }}
+
+                  </span>
+
+                </td>
+
+                <td>
+
+                  @if (
+                    leave.status === 'PENDING' ||
+                    leave.status === 'APPROVED'
+                  ) {
+
+                    <button
+                      type="button"
+                      class="cancel-button"
+                      (click)="cancelLeave(leave.id)">
+
+                      Cancel
+
+                    </button>
+
+                  } @else {
+
+                    <span>-</span>
+
+                  }
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
